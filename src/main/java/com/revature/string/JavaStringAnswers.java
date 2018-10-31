@@ -11,8 +11,13 @@ public class JavaStringAnswers implements JavaString {
 	private static final Logger LOGGER = Logger.getLogger(JavaStringAnswers.class);
 	
 	public static void main(String[] args) {
-		
+		JavaStringAnswers jsa = new JavaStringAnswers();
+		LOGGER.info(jsa.parseInteger("+1234"));
 	}
+	
+	/**
+	 * accepts positive numbers in form "993" and "+993" as well as negative num like "-323"
+	 */
 	@Override
 	public int parseInteger(String number) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
@@ -42,7 +47,7 @@ public class JavaStringAnswers implements JavaString {
 			if (!Character.isDigit(chrArr[i])) {
 				throw new IllegalArgumentException("all input must be integer in string form");
 			}
-			output += (Character.getNumericValue(chrArr[i]) * Math.pow(10, number.length() - i - 1));
+			output += (Character.getNumericValue(chrArr[i]) * Math.pow(10, input.length() - i - 1));
 		}	
 		return output * positive;
 	}
