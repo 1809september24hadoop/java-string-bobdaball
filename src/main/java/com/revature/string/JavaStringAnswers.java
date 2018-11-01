@@ -13,6 +13,7 @@ public class JavaStringAnswers implements JavaString {
 	public static void main(String[] args) {
 		JavaStringAnswers jsa = new JavaStringAnswers();
 		LOGGER.info(jsa.parseInteger("+1234"));
+		LOGGER.info(jsa.delete("revature", 'e'));
 	}
 	
 	/**
@@ -119,6 +120,9 @@ public class JavaStringAnswers implements JavaString {
 		return Arrays.toString(chrArr);
 	}
 
+	/**
+	 * Since the direction is to delete a character, which includes more than the alphabet, I implemented so as to be case-sensitive.
+	 */
 	@Override
 	public String delete(String string, char c) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
@@ -126,39 +130,41 @@ public class JavaStringAnswers implements JavaString {
 			throw new IllegalArgumentException("String cannot be null");
 		}
 		
-		String answer = "";
+		StringBuilder answer = new StringBuilder("");
 		
 		char[] chrArr = string.toCharArray();
 		
 		for (char cha:chrArr) {
 			if (cha != c) {
-				answer += cha;
+				answer.append(cha);
 			}
 		}
-		return answer;
+		String answerString = new String(answer);
+		return answerString;
 	}
 
 	
-	/**
-	 * If string numbers are odd, the middle character is converted to upperCase.
-	 */
 	@Override
 	public String upperLower(String string) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
+		int size = string.length();
 		
-		if (string == null) {
-			throw new IllegalArgumentException("String cannot be null");
+		if (string == null || size % 2 == 1) {
+			throw new IllegalArgumentException("String cannot be null or odd number of characters");
 		}
 		
-		int halfPoint = string.length() / 2;
-		String answer = "";
+		int halfPoint = size / 2;
+		
+		StringBuilder output = new StringBuilder("");
 		String substr;
 		
 		for (int i = 0; i < string.length(); i++) {
 			substr = string.substring(i, i+1);
 			substr = i < halfPoint ? substr.toLowerCase() : substr.toUpperCase();
-			answer += substr;
+			output.append(substr);
 		}
+		String answer = new String(output);
+		
 		return answer;
 	}
 
